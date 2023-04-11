@@ -1,1 +1,0 @@
-select * from usuario join cliente on idUsuario = id_Usuario

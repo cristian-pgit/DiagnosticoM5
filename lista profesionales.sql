@@ -1,1 +1,0 @@
-select * from usuario join profesional on idUsuario = id_Profesional
