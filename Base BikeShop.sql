@@ -27,8 +27,7 @@ DROP TABLE IF EXISTS `brands`;
 CREATE TABLE `brands` (
   `brand_id` int NOT NULL,
   `brand_name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`brand_id`),
-  CONSTRAINT `brand_product_fk` FOREIGN KEY (`brand_id`) REFERENCES `products` (`product_id`)
+  PRIMARY KEY (`brand_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,8 +50,7 @@ DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `category_id` int NOT NULL,
   `category_name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`category_id`),
-  CONSTRAINT `category_products_fk` FOREIGN KEY (`category_id`) REFERENCES `products` (`product_id`)
+  PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -82,8 +80,7 @@ CREATE TABLE `customers` (
   `city` varchar(45) DEFAULT NULL,
   `state` varchar(45) DEFAULT NULL,
   `zip_code` int DEFAULT NULL,
-  PRIMARY KEY (`customer_id`),
-  CONSTRAINT `Customer_Orders_FK` FOREIGN KEY (`customer_id`) REFERENCES `orders` (`order_id`)
+  PRIMARY KEY (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -93,6 +90,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+INSERT INTO `customers` VALUES (1,'Alex','Troncoso',123444555,'alex.troncoso@gmail.com','Simepre Viva N° 102','NY','NY',10001),(2,'Barbara','Mori',NULL,'barbara.mori@yahoocom','Simepre Viva N° 103','NY','NY',10001),(3,'Winston','Churchill',123444557,'w.church@gmail.com','Simepre Viva N° 104','NY','NY',10001),(4,'Pedro','Madrigal',NULL,'p.madrigal@yahoo.com','Simepre Viva N° 105','NY','NY',10001),(5,'Isabel','Pantoja',123444559,'isa.pantoja@gmail.com','Simepre Viva N° 106','NY','NY',10001),(6,'Tulio','Triviño',NULL,'tulio.tiviño@yahoo.com','Simepre Viva N° 107','NY','NY',10001),(7,'Maria','Mercedez',123444561,'maria.mercedez@gmail.com','Simepre Viva N° 108','NY','NY',10001),(8,'Marimar','Perez',123444562,'la_costeñita@gmail.com','Simepre Viva N° 109','NY','NY',10001),(9,'Maria','Hernandez',123444555,'la_del_barrio@gmail.com','Simepre Viva N° 110','NY','NY',10001),(10,'Alphonse','Elric',222222111,'haganenorenjustushi@gmail.com','Beverlly Hills N° 102','LA','CA',10001),(11,'Edward','Elric',222333111,'livingarmor@yahoocom','Beverlly Hills N° 103','LA','CA',10001),(12,'Troy','Bolton',222111333,'cantanteamateur@gmail.com','Beverlly Hills N° 104','LA','CA',10001),(13,'Ginna','Davis',22111222,'mesono@yahoo.com','Beverlly Hills','LA','CA',10001),(14,'Grace','Vinsel',222121223,'inventada@gmail.com','Beverlly Hills N° 110','LA','CA',10001),(15,'Bianca','Lepin',222444111,'queseyo@gmail.com','Beverlly Hills N° 121','LA','CA',10001),(16,'Chuck','Norris',333111222,'walkingtexasranger@gmail.com','Noshooting Here St N° 110','Rowlett','TX',10012),(17,'Bob','Wilson',333111223,'bobelconstructor@gmail.com','Noshooting Here St N° 110','Rowlett','TX',10012),(18,'Meredith','Grey',333111224,'greysanathomy@gmail.com','Noshooting Here St N° 110','Rowlett','TX',10012),(19,'Pio','Nono',333111225,'pasteleronono@gmail.com','Noshooting Here St N° 110','Rowlett','TX',10012);
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +108,10 @@ CREATE TABLE `order_items` (
   `quantity` int DEFAULT NULL,
   `list_price` int DEFAULT NULL,
   `discount` int DEFAULT NULL,
-  PRIMARY KEY (`order_id`,`item_id`)
+  PRIMARY KEY (`order_id`,`item_id`),
+  KEY `orderItems_products_idx` (`item_id`),
+  CONSTRAINT `orderItems_orders` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
+  CONSTRAINT `orderItems_products` FOREIGN KEY (`item_id`) REFERENCES `products` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -140,8 +141,10 @@ CREATE TABLE `orders` (
   `store_id` int DEFAULT NULL,
   `staff_id` int DEFAULT NULL,
   PRIMARY KEY (`order_id`),
-  CONSTRAINT `order_orderItems` FOREIGN KEY (`order_id`) REFERENCES `order_items` (`order_id`),
-  CONSTRAINT `order_store` FOREIGN KEY (`order_id`) REFERENCES `stores` (`store_id`)
+  KEY `order_store_idx` (`store_id`),
+  KEY `order_customer_idx` (`customer_id`),
+  CONSTRAINT `order_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
+  CONSTRAINT `order_store` FOREIGN KEY (`store_id`) REFERENCES `stores` (`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -151,6 +154,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,1,'activo','2023-02-18','2023-03-01','2023-03-05',1,1),(2,2,'activo','2023-02-18','2023-03-01','2023-03-05',1,2),(3,7,'activo','2023-02-19','2023-03-01','2023-03-05',1,3),(4,8,'activo','2023-02-20','2023-03-02','2023-03-06',1,1),(5,5,'activo','2023-02-20','2023-03-02','2023-03-06',1,2),(6,3,'activo','2023-02-20','2023-03-02','2023-03-06',1,1),(7,2,'activo','2023-02-21','2023-03-03','2023-03-07',1,2),(8,1,'activo','2023-02-21','2023-03-03','2023-03-07',1,1),(9,4,'activo','2023-02-21','2023-03-03','2023-03-07',1,3),(10,11,'activo','2023-02-18','2023-03-01','2023-03-05',2,4),(11,12,'activo','2023-02-18','2023-03-01','2023-03-05',2,4),(12,13,'activo','2023-02-19','2023-03-01','2023-03-05',2,5),(13,14,'activo','2023-02-20','2023-03-02','2023-03-06',2,5),(14,15,'activo','2023-02-20','2023-03-02','2023-03-06',2,6),(15,12,'activo','2023-02-20','2023-03-02','2023-03-06',2,6),(16,16,'activo','2023-02-18','2023-03-01','2023-03-05',3,6),(17,16,'activo','2023-02-18','2023-03-01','2023-03-05',3,6),(18,16,'activo','2023-02-19','2023-03-01','2023-03-05',3,7),(19,18,'activo','2023-02-20','2023-03-02','2023-03-06',3,8),(20,19,'activo','2023-02-20','2023-03-02','2023-03-06',3,9);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +173,9 @@ CREATE TABLE `products` (
   `model_year` int DEFAULT NULL,
   `list_price` int DEFAULT NULL,
   PRIMARY KEY (`product_id`),
-  CONSTRAINT `product_stock_fk` FOREIGN KEY (`product_id`) REFERENCES `stocks` (`product_id`)
+  CONSTRAINT `product_stock_fk` FOREIGN KEY (`product_id`) REFERENCES `stocks` (`product_id`),
+  CONSTRAINT `products_brand` FOREIGN KEY (`product_id`) REFERENCES `brands` (`brand_id`),
+  CONSTRAINT `products_category` FOREIGN KEY (`product_id`) REFERENCES `categories` (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='	';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -199,9 +205,10 @@ CREATE TABLE `staffs` (
   `store_id` int DEFAULT NULL,
   `manager_id` int DEFAULT NULL,
   PRIMARY KEY (`staff_id`),
-  KEY `Staff_Manager_FK_idx` (`manager_id`),
-  CONSTRAINT `Staff_Manager_FK` FOREIGN KEY (`manager_id`) REFERENCES `staffs` (`staff_id`),
-  CONSTRAINT `Staff_store` FOREIGN KEY (`staff_id`) REFERENCES `stores` (`store_id`)
+  KEY `staff_manager_idx` (`manager_id`),
+  KEY `store_staff_idx` (`store_id`),
+  CONSTRAINT `staff_manager` FOREIGN KEY (`manager_id`) REFERENCES `staffs` (`staff_id`),
+  CONSTRAINT `store_staff` FOREIGN KEY (`store_id`) REFERENCES `stores` (`store_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -211,6 +218,7 @@ CREATE TABLE `staffs` (
 
 LOCK TABLES `staffs` WRITE;
 /*!40000 ALTER TABLE `staffs` DISABLE KEYS */;
+INSERT INTO `staffs` VALUES (1,'Rowan','Jeffs','rowan@bikestore.com',12341234,'activo',1,1),(2,'Peter','Pan','ppan@bikestore.com',12341234,'activo',1,1),(3,'Lily','Evans','lievans@bikestore.com',12341234,'activo',1,1),(4,'Peter','Pettigrew','therat@bikestore.com',12341245,'activo',2,4),(5,'Remus','Lupin','licanteacher@bikestore.com',12341245,'activo',2,4),(6,'Tyra','Banks','supermodel@bikestore.com',12341245,'activo',2,4),(7,'Lisa','Lane','whoneedsuperman@bikestore.com',12341678,'activo',3,7),(8,'Gilderoy','Lockhart','cheater@bikestore.com',12341678,'activo',3,7),(9,'Tadeus','Mort','dontknow@bikestore.com',12341678,'activo',3,7);
 /*!40000 ALTER TABLE `staffs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,7 +274,7 @@ CREATE TABLE `stores` (
 
 LOCK TABLES `stores` WRITE;
 /*!40000 ALTER TABLE `stores` DISABLE KEYS */;
-INSERT INTO `stores` VALUES (1,'Baldwin',12341234,'baldwinst@bikestore.cl','Baldwin St. 303','NY','NY',11223);
+INSERT INTO `stores` VALUES (1,'Baldwin Bikes',12341234,'baldwinst@bikestore.com','Baldwin St. 303','NY','NY',11223),(2,'Santa Cruz Bikes',12341245,'stcruzbikes@bikestore.cl','Sta. Cruz 102','Santa Cruz','CA',95060),(3,'Rowlett Bikes',12341678,'rowlettbikes@bikestore.cl','Rowlett 402','Rowlett','TX',10000);
 /*!40000 ALTER TABLE `stores` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -279,4 +287,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-11 13:51:58
+-- Dump completed on 2023-04-11 20:50:17

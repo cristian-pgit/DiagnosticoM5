@@ -1,0 +1,4 @@
+store_name,COUNT(order_id)
+"Baldwin Bikes",9
+"Santa Cruz Bikes",6
+"Rowlett Bikes",5

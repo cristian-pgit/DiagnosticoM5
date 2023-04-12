@@ -1,0 +1,10 @@
+customer_id,last_name,first_name,phone,email,street,city,state,zip_code
+3,Churchill,Winston,123444557,w.church@gmail.com,"Simepre Viva N° 104",NY,NY,10001
+9,Hernandez,Maria,123444555,la_del_barrio@gmail.com,"Simepre Viva N° 110",NY,NY,10001
+4,Madrigal,Pedro,123444558,p.madrigal@yahoo.com,"Simepre Viva N° 105",NY,NY,10001
+7,Mercedez,Maria,123444561,maria.mercedez@gmail.com,"Simepre Viva N° 108",NY,NY,10001
+2,Mori,Barbara,123444556,barbara.mori@yahoocom,"Simepre Viva N° 103",NY,NY,10001
+5,Pantoja,Isabel,123444559,isa.pantoja@gmail.com,"Simepre Viva N° 106",NY,NY,10001
+8,Perez,Marimar,123444562,la_costeñita@gmail.com,"Simepre Viva N° 109",NY,NY,10001
+6,Triviño,Tulio,123444560,tulio.tiviño@yahoo.com,"Simepre Viva N° 107",NY,NY,10001
+1,Troncoso,Alex,123444555,alex.troncoso@gmail.com,"Simepre Viva N° 102",NY,NY,10001

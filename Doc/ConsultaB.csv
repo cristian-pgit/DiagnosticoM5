@@ -1,0 +1,4 @@
+customer_id,last_name,first_name,phone,email,street,city,state,zip_code
+2,Mori,Barbara,NULL,barbara.mori@yahoocom,"Simepre Viva N° 103",NY,NY,10001
+4,Madrigal,Pedro,NULL,p.madrigal@yahoo.com,"Simepre Viva N° 105",NY,NY,10001
+6,Triviño,Tulio,NULL,tulio.tiviño@yahoo.com,"Simepre Viva N° 107",NY,NY,10001
