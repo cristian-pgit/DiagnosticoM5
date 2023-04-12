@@ -53,5 +53,26 @@ public class ConsultasCreacion {
 			+ "(20, 5, 'activo', '2023/02/20', '2023/03/02', '2023/03/06', 3, 2);";
 	
 	
-
+	String category = "INSERT INTO categories (category_id,category_name)"
+			+ "VALUES"
+			+ "(1, 'Mountain Bike'),"
+			+ "(2, 'Speed'),"
+			+ "(3, 'Urban'),"
+			+ "(4, 'BMX'),"
+			+ "(5, 'Electric Bike');";
+	
+	String brands = "INSERT INTO brands (brand_id,brand_name)"
+			+ "VALUES"
+			+ "(1, 'Raleigh Bicycle'),"
+			+ "(2, 'Specialized'),"
+			+ "(3, 'Trek'),"
+			+ "(4, 'Cannondale'),"
+			+ "(5, 'Cervelo'),"
+			+ "(6, 'Bianchi'),"
+			+ "(7, 'Diamondback'),"
+			+ "(8, 'Kona Bicycle Company'),"
+			+ "(9, 'Scott Sports'),"
+			+ "(10, 'Tiffany and Co.');";
+	
+ 
 }

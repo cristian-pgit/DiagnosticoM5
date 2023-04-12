@@ -1,0 +1,20 @@
+INSERT INTO products (product_id,product_name,brand_id,category_id,model_year,list_price)
+VALUES
+(1, 'P.3', 2, 4, 2023, 2200),
+(2, 'Rockhopper Comp 27.5', 2, 1, 2023, 765),
+(3, 'Shiv Expert Disc', 2, 2, 2023, 9000),
+(4, 'Haul ST', 2, 3, 2023, 2700),
+(5, 'S-Works Turbo Creo SL EVO', 2, 5, 2023, 14750),
+(6, 'STRADA X', 1, 1, 2023, 494),
+(7, 'STOWAWAY FOLDING BIKE', 1, 3, 2023, 438),
+(8, 'CENTROS - HUB GEAR', 1, 5, 2023, 2963),
+(9, 'Supercaliber 9.9 XX1 AXS', 3, 4, 2023, 11700),
+(10, 'Domane SLR 9 Gen 4', 3, 4, 2023, 12750),
+(11, 'Hi-MOD 1', 4, 1, 2023, 8600),
+(12, 'Hi-MOD Dura-Ace Di2', 4, 2, 2023, 13050),
+(13, 'Treadwell Neo', 4, 5, 2023, 2525),
+(14, 'DURA ACE DI2', 5, 2, 2023, 11500),
+(15, 'SPECIALISSIMA', 6, 2, 2023, 14376),
+(16, 'RELEASE 29 3', 7, 1, 2023, 4125),
+(17, 'PROCESS X CR/DL', 8, 1, 2023, 8000),
+(18, 'SCOTT Scale 24 Disc', 9, 3, 2023, 576);
